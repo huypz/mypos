@@ -25,11 +25,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     else {
         $desc = mysqli_real_escape_string($dbc, trim($_POST['description']));
     }
-    if (empty($_POST['supplier_id'])) {
-        $errors[] = 'Please enter the supplier id.';
+    if (empty($_POST['email'])) {
+        $errors[] = 'Please enter the supplier email.';
     }
     else {
-        $sid = mysqli_real_escape_string($dbc, trim($_POST['supplier_id']));
+        $e = mysqli_real_escape_string($dbc, trim($_POST['email']));
+        $q = "SELECT user_id FROM users WHERE email='$e'";
+        $r = @mysqli_query($dbc, $q);
+        if (mysqli_num_rows($r) == 0) {
+            $errors[] = 'Email does not exist.';
+        }
+        $sid = mysqli_fetch_row($r)[0];
     }
 
     if (empty($errors)) {
@@ -71,8 +77,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         value="<?php if (isset($_POST['category'])) echo $_POST['category']; ?>"></p>
     <p>Product Description: <input type="text" name="description" size="30" maxlength="255"
         value="<?php if (isset($_POST['description'])) echo $_POST['description']; ?>"></p>
-    <p>Supplier ID: <input type="text" name="supplier_id" size="15" maxlength="40"
-        value="<?php if (isset($_POST['supplier_id'])) echo $_POST['supplier_id']; ?>"></p>
+    <p>Supplier (User) Email: <input type="email" name="email" size="20" maxlength="60"
+        value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>"></p>
     <p><input type="submit" name="submit" value="Register"/></p>
 </form>
 <?php
