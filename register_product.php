@@ -33,8 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (empty($errors)) {
-        $q = "INSERT INTO ingredients (name, category, description, supplier_id)
-            VALUES ('$pn', '$cat', '$desc', '$sid')";
+        $q = "INSERT INTO ingredients (name, category, description, stock, supplier_id)
+            VALUES ('$pn', '$cat', '$desc', 1, '$sid')";
         $r = @mysqli_query($dbc, $q);
 
         if ($r) {
