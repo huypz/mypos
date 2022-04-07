@@ -53,6 +53,10 @@ body {
     border-bottom: 1px solid #eee;
 }
 
+.body-content p {
+    margin-top: 8px;
+}
+
 .footer {
     position: absolute;
     bottom: 0;
