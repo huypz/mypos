@@ -1,5 +1,5 @@
 <?php
-$page_title = 'Uma Eats';
+$page_title = 'Insta Dish - Explore All of Our Delicacies';
 include('includes/header.html');
 ?>
 
