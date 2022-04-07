@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     mysqli_close($dbc);
 }
 ?>
-<h1>Change Password</h1>
+<div class="page-header"><h1>Change Password</h1></div>
 <form action="password.php" method="post">
     <p>Email Address: <input type="email" name="email" size="20" maxlength="60"
         value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>"></p>

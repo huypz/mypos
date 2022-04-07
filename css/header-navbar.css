@@ -1,0 +1,170 @@
+@import url('https://css.gg/profile.css');
+@import url('https://css.gg/shopping-cart.css');
+@import url('https://css.gg/search.css');
+
+*, ::before, ::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-family: Helvetica;
+    font-size: 14px;
+    word-spacing: 1px;
+    min-width: 1280px;
+    overflow: auto;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 80px;
+    background-color: #fff;
+    border-bottom: 3px solid #ececec;
+    min-width: 1280px;
+}
+
+.body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    top: 80px;
+    padding-bottom: 256px;
+}
+
+.body-content {
+    width: 1280px;
+    margin: 0 auto;
+}
+
+.body-content .page-header {
+    padding-bottom: 9px;
+    margin: 40px 0 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #f5f5f5;
+}
+
+.footer-content {
+    width: 1280px;
+    margin: 16px auto;
+    height: 88px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.header button {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.header a {
+    text-decoration: none;
+}
+
+.header-logo {
+    float: left;
+    margin-left: 8px;
+    width: 317px;
+    height: 88px;
+}
+
+.header-logo img {
+    display: inline;
+    margin-left: 64px;
+}
+
+.header-navwrap {
+    display: inline-block;
+    position: relative;
+}
+
+.header-navbar {
+    display: inline-block;
+}
+
+.header-navitem {
+    display: flex;
+    position: relative;
+    align-items: center;
+    float: left;
+    width: auto;
+    height: 80px;
+    line-height: 80px;
+    margin: 0 15px;
+    color: #5b5b5b;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.header-search-bar {
+    display: flex;
+    margin-left: 32px;
+}
+
+.header-search-bar .input-container {
+    display: flex;
+    position: relative;
+    width: 420px;
+    height: 32px;
+    border: 1px solid #5b5b5b;
+    border-radius: 25px;
+    padding: 0 16px;
+}
+
+.header-search-bar .search-icon {
+    margin-right: 8px;
+}
+
+.header-search-bar input {
+    width: 100%;
+    border: none;
+    outline: none;
+}
+
+.header-login {
+    display: flex;
+    position: absolute;
+    justify-content: flex-end;
+    top: 0;
+    right: 101px;
+    height: 100%;
+}
+
+.header-login .login-icon {
+    margin-left: 12px;
+}
+
+.header-cart  {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 36px;
+    width: 28px;
+    height: 100%;
+    justify-content: center;
+    cursor: pointer;
+}

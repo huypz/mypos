@@ -1,7 +1,7 @@
 <?php
 $page_title = 'View Products';
 include('includes/header.html');
-echo '<h1>Registered Products</h1>';
+echo '<div class="page-header"><h1>Registered Products</h1></div>';
 require('../mysqli_connect.php');
 
 $q = "SELECT name,

@@ -1,28 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title><?php echo $page_title; ?></title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link href="css/sticky-footer-navbar.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><?php echo $page_title; ?></title>
+    <link rel="stylesheet" type="text/css" href="../css/header-navbar.css">
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <script src="../js/login.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
-	<div class="container">
-		<div class="navbar-header"><a class="navbar-brand" href="#">Team 11</a></div>
-		<div id="navbar" class="collapse navbar-collapse">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="index.php">Home</a></li>
-				<li><a href="register.php">Register</a></li>
-				<li><a href="view_users.php">View Users</a></li>
-				<li><a href="password.php">Change Password</a></li>
-				<li><a href="register_product.php">Register Product</a></li>
-				<li><a href="view_products.php">View Products</a></li>
-			</ul>
-		</div>
-	</div>
-</nav>
-<div class="container">
-<!-- Script 3.2 - header.html -->
+    <div class="header">
+        <div class="header-logo">
+            <img src="../images/uma-eats.svg" alt="logo">
+        </div>
+        <div class="header-navwrap">
+            <div class="header-navbar">
+                <a class="header-navitem" href="index.php">HOME</a>
+                <a class="header-navitem" href="register.php">REGISTER</a>
+                <a class="header-navitem" href="register_product.php">REGISTER PRODUCT</a>
+                <a class="header-navitem" href="view_users.php">VIEW USERS</a>
+                <a class="header-navitem" href="view_products.php">VIEW PRODUCTS</a>
+                <a class="header-navitem" href="password.php">CHANGE PASSWORD</a>
+                <div class="header-navitem header-search-bar">
+                    <form action="#" method="post">
+                        <div class="input-container">
+                            <button class="search-btn">
+                                <i class="search-icon gg-search" style="--ggs: 0.8"></i>
+                            </button>
+                            <input type="text" placeholder="Search products or users">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="header-login">
+            <button class="login-btn" onclick="openLoginForm()">
+                <span>Log In</span>
+                <i class="login-icon gg-profile"></i>
+            </button>
+        </div>
+        <div class="header-cart">
+            <button class="cart-btn">
+                <i class="cart-icon gg-shopping-cart"></i>
+            </button>
+        </div>
+    </div>
+    <div class="login-dialog">
+        <div class="login-dialog-scroll-container">
+            <div class="login-dialog-content">
+                <div class="login-container">
+                    <div class="close-btn" onclick="closeLoginForm()">&times;</div>
+                    <div class="login-form-container">
+                        <div class="login-form-header">Log In</div>
+                        <form action="login.php" method="post">
+                            <div class="login-form-input">
+                                <div class="input-container">
+                                    <input type="text" name="user" placeholder="Username/Email" maxlength="64">
+                                </div>
+                            </div>
+                            <div class="login-form-input">
+                                <div class="input-container">
+                                    <input type="password" name="password" placeholder="Password" maxlength="64">
+                                </div>
+                            </div>
+                            <div class="login-form-button">
+                                <button class="login-btn" type="submit">Log In</button>
+                            </div>
+                        </form>
+                        <div class="register-bar">
+                            <a href="#" target="_blank">Forgot Password?</a>
+                            <a class="to-register">Register Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body">
+        <div class="body-content">

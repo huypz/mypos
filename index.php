@@ -1,5 +1,5 @@
 <?php
-$page_title = 'Team 11';
+$page_title = 'Uma Eats';
 include('includes/header.html');
 ?>
 

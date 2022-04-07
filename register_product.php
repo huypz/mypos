@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 ?>
-<h1>Register Product</h1>
+<div class="page-header"><h1>Register Product</h1></div>
 <form action="register_product.php" method="post">
     <p>Product Name: <input type="text" name="product_name" size="15" maxlength="50"
         value="<?php if (isset($_POST['product_name'])) echo $_POST['product_name']; ?>"></p>

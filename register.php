@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     mysqli_close($dbc);
 }
 ?>
-<h1>Register</h1>
+<div class="page-header"><h1>Register</h1></div>
 <form action="register.php" method="post">
     <p>First Name: <input type="text" name="first_name" size="15" maxlength="20"
         value="<?php if (isset($_POST['first_name'])) echo $_POST['first_name']; ?>"></p>

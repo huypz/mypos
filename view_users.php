@@ -1,7 +1,7 @@
 <?php
 $page_title = 'View Current Users';
 include('includes/header.html');
-echo '<h1>Registered Users</h1>';
+echo '<div class="page-header"><h1>Registered Users</h1></div>';
 require('../mysqli_connect.php');
 
 $q = "SELECT CONCAT(last_name, ', ', first_name) AS name,
