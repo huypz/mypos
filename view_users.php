@@ -5,17 +5,19 @@ echo '<div class="page-header"><h1>Registered Users</h1></div>';
 require('../mysqli_connect.php');
 
 $q = "SELECT CONCAT(last_name, ', ', first_name) AS name,
+    email,
     DATE_FORMAT(registration_date, '%M %d %Y') AS dr
     FROM users
     ORDER BY registration_date ASC";
 $r = @mysqli_query($dbc, $q);
 $num = mysqli_num_rows($r);
 if ($num > 0) {
-    echo '<p>There are currently ' . $num . ' registered users</p>';
+    echo '<p>There are currently ' . $num . ' registered users.</p><br>';
     echo '<table width="60%">
         <thead>
         <tr>
             <th align="left">Name</th>
+            <th align="left">Email</th>
             <th align="left">Date Registered</th>
         </tr>
         </thead>
@@ -23,6 +25,7 @@ if ($num > 0) {
     while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
         echo '<tr>
             <td align="left">' . $row['name'] . '</td>
+            <td align="left">' . $row['email'] . '</td>
             <td align="left">' . $row['dr'] . '</td>
             </tr>';
     }

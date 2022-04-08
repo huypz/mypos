@@ -1,4 +1,5 @@
 <?php
+session_start();
 $page_title = 'Register Product';
 include('includes/header.html');
 
@@ -7,11 +8,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $errors = [];
     
-    if (empty($_POST['product_name'])) {
+    if (empty($_POST['name'])) {
         $errors[] = 'Please enter the product name.';
     }
     else {
-        $pn = mysqli_real_escape_string($dbc, trim($_POST['product_name']));
+        $pn = mysqli_real_escape_string($dbc, trim($_POST['name']));
     }
     if (empty($_POST['category'])) {
         $errors[] = 'Please enter the product category.';
@@ -19,28 +20,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     else {
         $cat = mysqli_real_escape_string($dbc, trim($_POST['category']));
     }
+    if (empty($_POST['amount'])) {
+        $errors[] = 'Please enter the product amount.';
+    }
+    else {
+        $amt = mysqli_real_escape_string($dbc, trim($_POST['amount']));
+    }
     if (empty($_POST['description'])) {
         $errors[] = 'Please enter the product description.';
     }
     else {
         $desc = mysqli_real_escape_string($dbc, trim($_POST['description']));
     }
-    if (empty($_POST['email'])) {
-        $errors[] = 'Please enter the supplier email.';
+
+    if (isset($_SESSION['user_id'])) {
+        $q = "SELECT supplier_id
+            FROM suppliers 
+            WHERE user_id={$_SESSION['user_id']}";
+        $r = @mysqli_query($dbc, $q);
+        if (mysqli_num_rows($r) > 0) {
+            $sid = mysqli_fetch_row($r)[0];
+        }
+        else {
+            $errors[] = 'Please sign up for a supplier account.';
+        }
     }
     else {
-        $e = mysqli_real_escape_string($dbc, trim($_POST['email']));
-        $q = "SELECT user_id FROM users WHERE email='$e'";
-        $r = @mysqli_query($dbc, $q);
-        if (mysqli_num_rows($r) == 0) {
-            $errors[] = 'Email does not exist.';
-        }
-        $sid = mysqli_fetch_row($r)[0];
+        $errors[] = 'Please log in to register a product.';
     }
 
     if (empty($errors)) {
-        $q = "INSERT INTO ingredients (name, category, description, stock, supplier_id)
-            VALUES ('$pn', '$cat', '$desc', 1, '$sid')";
+        $q = "INSERT INTO products (name, category, stock, description, supplier_id)
+            VALUES ('$pn', '$cat', '$amt', '$desc', '$sid')";
         $r = @mysqli_query($dbc, $q);
 
         if ($r) {
@@ -71,14 +82,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 <div class="page-header"><h1>Register Product</h1></div>
 <form action="register_product.php" method="post">
-    <p>Product Name: <input type="text" name="product_name" size="15" maxlength="50"
-        value="<?php if (isset($_POST['product_name'])) echo $_POST['product_name']; ?>"></p>
-    <p>Product Category: <input type="text" name="category" size="20" maxlength="60"
+    <p>Name: <input type="text" name="name" size="15" maxlength="50"
+        value="<?php if (isset($_POST['name'])) echo $_POST['name']; ?>"></p>
+    <p>Category: <input type="text" name="category" size="20" maxlength="60"
         value="<?php if (isset($_POST['category'])) echo $_POST['category']; ?>"></p>
-    <p>Product Description: <input type="text" name="description" size="30" maxlength="255"
+    <p>Amount: <input type="number" name="amount" min="1" max="9999"
+        value="<?php if (isset($_POST['amount'])) echo $_POST['amount']; ?>"></p>
+    <p>Description: <input type="text" name="description" size="30" maxlength="255"
         value="<?php if (isset($_POST['description'])) echo $_POST['description']; ?>"></p>
-    <p>Supplier (User) Email: <input type="email" name="email" size="20" maxlength="60"
-        value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>"></p>
     <p><input type="submit" name="submit" value="Register"/></p>
 </form>
 <?php

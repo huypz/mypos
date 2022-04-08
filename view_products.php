@@ -4,22 +4,20 @@ include('includes/header.html');
 echo '<div class="page-header"><h1>Registered Products</h1></div>';
 require('../mysqli_connect.php');
 
-$q = "SELECT name,
-    category,
-    stock,
-    supplier_id
-    FROM ingredients
-    ORDER BY name";
+$q = "SELECT name, category, stock, description, supplier_id, username 
+    FROM products, users 
+    WHERE products.supplier_id=users.user_id;";
 $r = @mysqli_query($dbc, $q);
 $num = mysqli_num_rows($r);
 if ($num > 0) {
-    echo '<p>There are currently ' . $num . ' registered products.</p>';
+    echo '<p>There are currently ' . $num . ' registered products.</p><br>';
     echo '<table width="60%">
         <thead>
         <tr>
             <th align="left">Name</th>
             <th align="left">Category</th>
             <th align="left">Stock</th>
+            <th align="left">Supplier</th>
             <th align="left">Supplier ID</th>
         </tr>
         </thead>
@@ -29,6 +27,7 @@ if ($num > 0) {
             <td align="left">' . $row['name'] . '</td>
             <td align="left">' . $row['category'] . '</td>
             <td align="left">' . $row['stock'] . '</td>
+            <td align="left">' . $row['username'] . '</td>
             <td align="left">' . $row['supplier_id'] . '</td>
             </tr>';
     }
