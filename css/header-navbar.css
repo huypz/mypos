@@ -1,6 +1,7 @@
 @import url('https://css.gg/profile.css');
 @import url('https://css.gg/shopping-cart.css');
 @import url('https://css.gg/search.css');
+@import url('https://css.gg/arrow-down.css');
 
 *, ::before, ::after {
     margin: 0;
@@ -31,6 +32,7 @@ body {
     background-color: #fff;
     border-bottom: 3px solid #ececec;
     min-width: 1280px;
+    text-decoration: none;
 }
 
 .body {
@@ -127,6 +129,7 @@ body {
 .header-search-bar {
     display: flex;
     margin-left: 32px;
+    cursor: default;
 }
 
 .header-search-bar .input-container {
@@ -156,11 +159,65 @@ body {
     top: 0;
     right: 101px;
     height: 100%;
+    cursor: pointer;
+}
+
+.header-login .menu {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 3px 6px 0 0;
+    background: transparent;
+    outline: none;
+    border: 0;
+    list-style-type: none;
+}
+
+.menu .dropdown {
+    z-index: 9;
+    position: relative;
+}
+
+.login-menu {
+    display: none;
+}
+
+.login-menu a {
+    cursor: pointer;
+}
+
+.header-login:hover .login-menu {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    background: rgba(17,17,17,0.85);
+    position: absolute;
+    top: 32px;
+    right: -40px;
+    min-width: 176px;
+    cursor: default;
+}
+
+.login-menu li {
+    list-style: none;
+    border-bottom: 1px solid #fff;
+    padding: 0 10px 10px 10px;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+    text-align: right;
+}
+
+.login-menu a {
+    color: #fff;
+    text-align: center;
 }
 
 .header-login .login-icon {
+    margin: auto 0;
     margin-left: 12px;
 }
+
 
 .header-cart  {
     display: flex;

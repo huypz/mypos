@@ -1,20 +1,20 @@
 <?php
 function redirect_user($page = 'index.php') {
-    $hostname = 'www.exsale.tech';
-    $url = 'https:/' . $hostname . dirname ($_SERVER['PHP_SELF']);
+    $hostname = 'localhost';
+    $url = 'http://' . $hostname . dirname ($_SERVER['PHP_SELF']);
     $url = rtrim($url, '/\\');
     $url .= '/' . $page;
-    header("Location $url");
+    header("Location: $url");
     exit();
 }
 
-function check_login($dbc, $email='', $pass='') {
+function check_login($dbc, $user='', $pass='') {
     $errors = [];
-    if (empty($email)) {
-        $errors[] = 'Please enter an email address.';
+    if (empty($user)) {
+        $errors[] = 'Please enter a username/email.';
     }
     else {
-        $e = mysqli_real_escape_string($dbc, trim($email));
+        $u = mysqli_real_escape_string($dbc, trim($user));
     }
     if (empty($pass)) {
         $errors[] = 'Please enter a password.';
@@ -24,9 +24,16 @@ function check_login($dbc, $email='', $pass='') {
     }
 
     if (empty($errors)) {
-        $q = "SELECT user_id, first_name
-            FROM users
-            WHERE email='$e' AND pass=SHA2('$p', 512)";
+        if (filter_var($u, FILTER_VALIDATE_EMAIL)) {
+            $q = "SELECT user_id, username, email
+                FROM users
+                WHERE email='$u' AND pass=SHA2('$p', 512)";
+        }
+        else {
+            $q = "SELECT user_id, username, email
+                FROM users
+                WHERE username='$u' AND pass=SHA2('$p', 512)";
+        }
         $r = @mysqli_query($dbc, $q);
 
         if (mysqli_num_rows($r) == 1) {
@@ -34,7 +41,7 @@ function check_login($dbc, $email='', $pass='') {
             return [true, $row];
         }
         else {
-            $errors[] = 'The user/email and password combination you entered is incorrect.';
+            $errors[] = 'The username/email and password combination is incorrect.';
         }
     }
     return [false, $errors];

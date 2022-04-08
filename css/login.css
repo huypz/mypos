@@ -41,7 +41,7 @@
 .login-container {
     position: relative;
     background-color: #fff;
-    margin-top: 87px;
+    margin-top: 256px;
     padding: 30px 40px 50px;
 }
 
@@ -109,4 +109,8 @@
 .login-container .register-bar .to-register {
     float: right;
     cursor: pointer;
+}
+
+.register-bar {
+    margin-top: 14px;
 }
