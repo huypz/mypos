@@ -4,9 +4,9 @@ include('includes/header.html');
 echo '<div class="page-header"><h1>Registered Products</h1></div>';
 require('../mysqli_connect.php');
 
-$q = "SELECT name, category, stock, description, supplier_id, username 
-    FROM products, users 
-    WHERE products.supplier_id=users.user_id;";
+$q = "SELECT p.name, p.category, p.stock, p.description, s.supplier_id, u.username
+      FROM products AS p, suppliers AS s, users AS u
+      WHERE p.supplier_id=s.supplier_id AND s.user_id = u.user_id;";
 $r = @mysqli_query($dbc, $q);
 $num = mysqli_num_rows($r);
 if ($num > 0) {
@@ -16,6 +16,7 @@ if ($num > 0) {
         <tr>
             <th align="left">Name</th>
             <th align="left">Category</th>
+            <th align="left">Description</th>
             <th align="left">Stock</th>
             <th align="left">Supplier</th>
             <th align="left">Supplier ID</th>
@@ -26,6 +27,7 @@ if ($num > 0) {
         echo '<tr>
             <td align="left">' . $row['name'] . '</td>
             <td align="left">' . $row['category'] . '</td>
+            <td align="left">' . $row['description'] . '</td>
             <td align="left">' . $row['stock'] . '</td>
             <td align="left">' . $row['username'] . '</td>
             <td align="left">' . $row['supplier_id'] . '</td>
