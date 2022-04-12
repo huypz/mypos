@@ -1,3 +1,3 @@
-# Team 11 POS System
+# Point of Sale System Website
 
-2 triggers for table 'ingredients'
+https://exsale.tech/
