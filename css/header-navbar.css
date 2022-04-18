@@ -92,14 +92,24 @@ body {
 
 .header-logo {
     float: left;
-    margin-left: 8px;
-    width: 317px;
-    height: 88px;
+    margin-left: 6px;
+    width: 264px;
+    height: 80px;
+}
+
+.header-logo a {
+    display: block;
+    margin-left: 64px;
+    width: 160px;
+    height: 80px;
 }
 
 .header-logo img {
     display: inline;
-    margin-left: 64px;
+    width: 160px;
+    height: 160px;
+    margin-top: -50px;
+    pointer-events: none;
 }
 
 .header-navwrap {

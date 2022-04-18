@@ -1,5 +1,5 @@
 <?php
-$page_title = 'Uma Eats - Dive Into Delicacies';
+$page_title = 'MY POS';
 include('includes/header.html');
 ?>
 

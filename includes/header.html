@@ -13,7 +13,9 @@
 <body>
     <div class="header">
         <div class="header-logo">
-            <img src="/images/uma-eats.svg" alt="logo">
+            <a href="/index.php">
+                <img src="/images/my-pos.png" alt="logo" width="160px" height="160px">
+            </a>
         </div>
         <div class="header-navwrap">
             <div class="header-navbar">
@@ -52,9 +54,11 @@
             <i class="login-icon gg-profile"></i>
         </div>
         <div class="header-cart">
-            <button class="cart-btn">
-                <i class="cart-icon gg-shopping-cart"></i>
-            </button>
+            <form action="shopping_cart.php" method = "get" style="align-self: center;">
+                <button class="cart-btn">
+                    <i class="cart-icon gg-shopping-cart"></i>
+                </button>
+            </form>
         </div>
     </div>
     <div class="login-dialog">
