@@ -1,0 +1,16 @@
+@import url('https://css.gg/add-r.css');
+
+.add-product-button {
+    float: right !important;
+}
+
+.add-product-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 5px;
+}
+
+.add-product-btn span {
+    display: inline-block;
+    margin-right: 6px;
+}
