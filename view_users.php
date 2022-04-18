@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="/css/table.css">
 <?php
 $page_title = 'View Current Users';
 include('includes/header.html');
@@ -13,7 +14,8 @@ $r = @mysqli_query($dbc, $q);
 $num = mysqli_num_rows($r);
 if ($num > 0) {
     echo '<p>There are currently ' . $num . ' registered users.</p><br>';
-    echo '<table width="60%">
+    echo '<div class="table-container">';
+    echo '<table>
         <thead>
         <tr>
             <th align="left">Name</th>
@@ -29,7 +31,7 @@ if ($num > 0) {
             <td align="left">' . $row['dr'] . '</td>
             </tr>';
     }
-    echo '</tbody></table>';
+    echo '</tbody></table></div>';
     mysqli_free_result($r);
 }
 else {

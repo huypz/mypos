@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="/css/table.css">
 <?php
 require('../mysqli_connect.php');
 
@@ -27,7 +28,7 @@ include('includes/header.html');
 
 echo '<div class="page-header"><h1>' . ucwords($prodInfo['name']) . '</h1></div>';
 if ($num > 0) {
-    echo '<table width="60%">
+    echo '<table>
         <thead>
         <tr>
             <th align="left">Name</th>

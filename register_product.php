@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $r = @mysqli_query($dbc, $q);
 
         if ($r) {
-            echo '<h1>Thank you!</h1>
+            echo '<div class="page-header"><h1>Thank you!</h1></div>
                 <p>Product registration successful.</p>
                 <p><br/></p>';
         }

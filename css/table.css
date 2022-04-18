@@ -1,0 +1,15 @@
+html, body {
+    margin: 0 !important;
+    height: 100% !important;
+    overflow: hidden !important;
+}
+
+.table-container {
+    height: 80%;
+    overflow-y: scroll
+}
+
+table {
+    width: 100%;
+    border-spacing: 15px 1rem; border: 1px solid #ebebeb;
+}

@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         if ($r1) {
-            echo '<h1>Thank you!</h1>
+            echo '<div class="page-header"><h1>Thank you!</h1></div>
                 <p>You are now registered.</p>
                 <p><br/></p>';
         }
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
     else {
-        echo '<h1>Error!</h1>
+        echo '<div class="page-header"><h1>Error!</h1></div>
             <p class="error">The following error(s) occurred:<br>';
             foreach ($errors as $msg) {
                 echo " - $msg<br>\n";
