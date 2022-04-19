@@ -26,7 +26,7 @@ $prodInfo = [
 $page_title = ucwords($prodInfo['name']);
 include('includes/header.html');
 
-echo '<div class="page-header"><h1>' . ucwords($prodInfo['name']) . '</h1></div>';
+echo '<div class="page-header"><h1>Product ID: ' . $id . '</h1></div>';
 if ($num > 0) {
     echo '<table>
         <thead>

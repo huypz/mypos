@@ -35,7 +35,12 @@ if ($num > 0) {
             <td align="left">' . $row['supplier_id'] . '</td>
             <td align="left">
                 <a href="view_item.php?id='. $row['id'] .'">
-                View Item
+                Edit
+                </a>
+            </td>
+            <td align="left">
+                <a href="/add_item.php?id='. $row['id'] .'">
+                Add
                 </a>
             </td>
             </tr>';
