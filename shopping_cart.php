@@ -16,7 +16,6 @@ if(isset($_SESSION['username']))
 
     $r = @mysqli_query($dbc, $q);
     $num = mysqli_num_rows($r);
-
     if($num == 0)
     {
         echo '<div class="Cart-Empty"><p2>Your Shopping Cart Is Empty!</p2></div>';
@@ -46,6 +45,7 @@ if(isset($_SESSION['username']))
     echo '<p class="total"><strong>Subtotal</strong>' . " ($num items) " . 
         '$'. number_format($total, 2) . '</p>';
     mysqli_free_result($r);
+    echo '<p><a href="/checkout.php"><button>Continue to checkout</button></a></p>';
     }
 }
 else
@@ -53,7 +53,6 @@ else
     echo '<div class="page-header"><h2>Please log in to view your shopping cart!</h2></div>';
 }
 ?>
-<p><a href="/checkout.php"><button>Continue to checkout</button></p>
 <?php
 include('includes/footer.html');
 ?>

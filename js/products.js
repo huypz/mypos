@@ -8,7 +8,10 @@ function addItem(item_id, quantity=1) {
     options.dataType = 'text';
     options.type = 'POST';
     options.success = function(response) {
-        if (response == 'CORRECT') {
+        if (response == 'OUT OF STOCK') {
+            alert('Item out of stock');
+        }
+        else if (response == 'CORRECT') {
             alert('Item added')
         } 
         else if (response == 'INCORRECT') {

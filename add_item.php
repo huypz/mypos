@@ -2,6 +2,15 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['item_id'], $_POST['quantity'])) {
         require('../mysqli_connect.php');
+
+        $q = "SELECT stock FROM products WHERE id={$_POST['item_id']}";
+        $r = @mysqli_query($dbc, $q);
+        $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
+        if ($row['stock'] == 0) {
+            echo 'OUT OF STOCK';
+            mysqli_close($dbc);    
+            exit(); 
+        }
         session_start();
         if (isset($_SESSION['user_id'])) {
             $q = "SELECT cart_id FROM shopping_carts WHERE user_id={$_SESSION['user_id']}";

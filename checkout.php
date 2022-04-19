@@ -1,6 +1,20 @@
 <?php
+session_start();
 include('includes/header.html');
 require('../mysqli_connect.php');
+
+$id = $_SESSION['user_id'];
+
+$q = "SELECT p.name, p.price, i.quantity
+        FROM shopping_carts AS s, items AS i, products AS p
+        WHERE s.user_id=$id AND i.cart_id=s.cart_id AND p.id=i.product_id;";
+
+$r = @mysqli_query($dbc, $q);
+$num = mysqli_num_rows($r);
+$total = 0;
+while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
+    $total += $row['price'];
+}
 
 echo '<div class="page-header"><h2>Please Enter Payment Information</h2></div>';
 
@@ -56,14 +70,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $City_State = mysqli_real_escape_string($dbc, trim($_POST['City,State']));
     }
 
-
     if (empty($errors)) {
+        $q = "SELECT p.id, p.stock
+        FROM shopping_carts AS s, items AS i, products AS p
+        WHERE s.user_id=$id AND i.cart_id=s.cart_id AND p.id=i.product_id;";
+
+        $res = @mysqli_query($dbc, $q);
+
+        while($row = mysqli_fetch_array($res, MYSQLI_ASSOC))
+        {
+            $CurrentStock = $row['stock'];
+            $CurrentStock -= 1;
+            $pId = $row['id'];
+            $q = "UPDATE products " . "SET stock = '$CurrentStock' " . "WHERE id = '$pId'";
+            $r = @mysqli_query($dbc, $q);
+        }   
+        
+        $query = "SELECT cart_id FROM shopping_carts WHERE user_id = $id";
+        $r = @mysqli_query($dbc, $query);
+        $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
+        $cart_id = $row['cart_id'];
 
         $query = "INSERT INTO user_payment (card_number, description, payment_type, user_id) values ($Card_Number, 'TEST', 'Credit', $id)";
         $r = @mysqli_query($dbc, $query);
+
         $query = "INSERT INTO transactions (date, payment_amount, user_id) values (CURRENT_DATE(), $total, $id)";
         $r = @mysqli_query($dbc, $query);
-        $query = "DELETE FROM shopping_cart WHERE user_id = $id";
+
+        $query = "DELETE FROM items WHERE cart_id = $cart_id";
         $r = @mysqli_query($dbc, $query);
         $total = 0;
     }
@@ -75,9 +109,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         echo '</p><p>Please try again.</p><p><br></p>';
     }
-
-
-
 }
 
 include('includes/footer.html');
