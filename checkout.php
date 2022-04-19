@@ -1,8 +1,8 @@
 <?php
-require('shopping_cart.php');
 include('includes/header.html');
+require('../mysqli_connect.php');
 
-echo '<div class="page-header"><h2>Please Enter Paymet Information</h2></div>';
+echo '<div class="page-header"><h2>Please Enter Payment Information</h2></div>';
 
 echo '<form name = "form" method="post">
             <div class="Card-Number">
@@ -18,7 +18,7 @@ echo '<form name = "form" method="post">
         </form>';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
+    $errors = [];
     if (empty($_POST['Card_Number'])) {
         $errors[] = 'Please Enter a Card Number!';
     }

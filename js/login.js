@@ -45,18 +45,7 @@ $(function() {
             options.dataType = 'text';
             options.type = 'get';
             options.success = function(response) {
-                if (response == 'CORRECT') {
-                    $('.login-dialog').hide();
-                    $('.login').hide();
-                    $('.logout span').text(options.data['user']);
-                    $('.logout').show();
-				} 
-                else if (response == 'INCORRECT') {
-					alert('Invalid credentials.');
-				} 
-                else if (response == 'INCOMPLETE') {
-					alert('Please enter an email and password.')
-				} 
+                location.reload();
             };
             options.url = '/login.php';
             $.ajax(options);

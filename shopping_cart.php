@@ -25,15 +25,15 @@ if(isset($_SESSION['username']))
     {
         $total = 0;
         echo '<p>Displaying ' . $num . ' items.</p><br>';
-    echo '<table>
-        <thead>
-        <tr>
-            <th align="left">Name</th>
-            <th align="left">Quantity</th>
-            <th align="left">Price</th> 
-        </tr>
-        </thead>
-        <tbody>';
+        echo '<table>
+            <thead>
+            <tr>
+                <th align="left">Name</th>
+                <th align="left">Quantity</th>
+                <th align="left">Price</th> 
+            </tr>
+            </thead>
+            <tbody>';
     while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
         $total += $row['price'];
         echo '<tr>
@@ -43,12 +43,8 @@ if(isset($_SESSION['username']))
             </tr>';
     }
     echo '</tbody></table>';
-    echo '<p class="total">Your current total is $'. number_format($total, 2) . ' </p>';
-    echo "<br><div class='Check-Out'>
-            <form action='' method = 'get' style='align-self: center;'>
-                <input type = 'submit' name = 'check out' class = 'button' value = 'Check Out'/>
-            </form>
-        </div>";
+    echo '<p class="total"><strong>Subtotal</strong>' . " ($num items) " . 
+        '$'. number_format($total, 2) . '</p>';
     mysqli_free_result($r);
     }
 }
@@ -56,6 +52,8 @@ else
 {
     echo '<div class="page-header"><h2>Please log in to view your shopping cart!</h2></div>';
 }
-
+?>
+<p><a href="/checkout.php"><button>Continue to checkout</button></p>
+<?php
 include('includes/footer.html');
 ?>
