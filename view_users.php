@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="/css/table.css">
 <?php
-$page_title = 'View Current Users';
+$page_title = 'MY POS - Users';
 include('includes/header.html');
 echo '<div class="page-header"><h1>Registered Users</h1></div>';
 require('../mysqli_connect.php');

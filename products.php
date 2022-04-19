@@ -1,5 +1,5 @@
 <?php
-$page_title = 'Uma Eats - Products';
+$page_title = 'MY POS - Products';
 include('includes/header.html');
 ?>
 <div class="add-product-button">

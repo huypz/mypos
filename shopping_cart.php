@@ -8,7 +8,7 @@ if(isset($_SESSION['username']))
 {
     echo '<div class="page-header"><h2>Current Shopping Cart for user: ' . $_SESSION['username'] . '</h2></div>';
     $id = $_SESSION['user_id'];
-    $q = "SELECT product_name, subtotal FROM shopping_cart WHERE user_id = $id";
+    $q = "SELECT product_name, subtotal FROM shopping_carts WHERE user_id = $id";
 
     $r = @mysqli_query($dbc, $q);
     $num = mysqli_num_rows($r);

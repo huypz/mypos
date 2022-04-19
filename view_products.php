@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="/css/table.css">
 <?php
-$page_title = 'View Products';
+$page_title = 'MY POS - Products';
 include('includes/header.html');
 echo '<div class="page-header"><h1>Registered Products</h1></div>';
 require('../mysqli_connect.php');
