@@ -1,3 +1,15 @@
+<style>
+.table-container {
+    height: auto;
+    max-height: 60%;
+    overflow-y: scroll
+}
+
+table {
+    width: 100%;
+    border-spacing: 15px 1rem; border: 1px solid #ebebeb;
+}
+</style>
 <?php
 session_start();
 include('includes/header.html');
@@ -16,23 +28,25 @@ if($num <= 0)
 else if($num >= 0)
 {
     $suppId = $row['supplier_id'];
-    echo '<div class="Supplier"><p2>Your current items for supplier ' . $suppId . ' are </p2></div>';
+    echo '<div class="Supplier"><p>Your current items for are listed below.</p></div><br>';
     echo '<div class="table-container">';
     echo '<table>
     <thead>
     <tr>
         <th align="left">Name</th>
         <th align="left">ID</th> 
+        <th align="left">Stock</th> 
     </tr>
     </thead>
     <tbody>';
-    $query = "SELECT name, id FROM products WHERE supplier_id = '$suppId'";
+    $query = "SELECT name, id, stock FROM products WHERE supplier_id = '$suppId'";
     $res = @mysqli_query($dbc, $query);
     while($row = mysqli_fetch_array($res, MYSQLI_ASSOC))
     {
         echo '<tr>
             <td align="left">' . $row['name'] . '</td>
             <td align="left">' . $row['id'] . '</td>
+            <td align="left">' . $row['stock'] . '</td>
             </td>
             </tr>';
     }

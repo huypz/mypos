@@ -1,4 +1,25 @@
+<style>
+body {
+    overflow: hidden !important;
+}
+
+.body {
+    overflow: scroll !important;
+}
+
+.table-container {
+    height: auto;
+    max-height: 60%;
+    overflow-y: scroll
+}
+
+table {
+    width: 100%;
+    border-spacing: 15px 1rem; border: 1px solid #ebebeb;
+}
+</style>
 <?php
+$page_title = "Sales";
 include('includes/header.html');
 require('../mysqli_connect.php');
 
@@ -6,18 +27,19 @@ echo '<div class="page-header"><h1>Notable Statistics</h1></div>';
 
 $query = "SELECT p.name, p.price, p.description, s.num_sales 
          FROM products AS p, sales AS s 
-         WHERE s.product_id = p.id ORDER BY s.num_sales DESC";
+         WHERE s.product_id = p.id ORDER BY s.num_sales DESC
+         LIMIT 10";
 
 $res = @mysqli_query($dbc, $query);
 $num = mysqli_num_rows($res);
 if($num <= 0)
 {
-    echo "There are not notable sales!";
+    echo "There are no notable sales!";
 }
 else if($num > 0)
 {
     $counter = 5;
-    echo '<p>Displaying the best selling products.</p><br>';
+    echo '<p><strong>Displaying the 10 best selling products</strong>.</p><br>';
     echo '<div class="table-container">';
     echo '<table>
     <thead>
@@ -45,18 +67,19 @@ else if($num > 0)
 
 $query = "SELECT p.name, p.price, p.description, s.num_sales 
          FROM products AS p, sales AS s 
-         WHERE s.product_id = p.id ORDER BY s.num_sales ASC";
+         WHERE s.product_id = p.id ORDER BY s.num_sales ASC
+         LIMIT 10";
 
 $res = @mysqli_query($dbc, $query);
 $num = mysqli_num_rows($res);
 if($num <= 0)
 {
-    echo "There are not notable sales!";
+    echo "There are no notable sales!";
 }
 else if($num > 0)
 {
     $counter = 5;
-    echo '<p><br><br>Displaying the worst selling products.</p><br>';
+    echo '<p><br><br><strong>Displaying the 10 worst selling products</strong>.</p><br>';
     echo '<div class="table-container">';
     echo '<table>
     <thead>
@@ -84,18 +107,19 @@ else if($num > 0)
 
 $query = "SELECT p.name, p.price, p.description, s.num_sales 
          FROM products AS p, sales AS s 
-         WHERE s.product_id = p.id ORDER BY p.price ASC";
+         WHERE s.product_id = p.id ORDER BY p.price ASC
+         LIMIT 10";
 
 $res = @mysqli_query($dbc, $query);
 $num = mysqli_num_rows($res);
 if($num <= 0)
 {
-    echo "There are not notable sales!";
+    echo "There are no notable sales!";
 }
 else if($num > 0)
 {
     $counter = 5;
-    echo '<p><br><br>Displaying the least expensive products.</p><br>';
+    echo '<p><br><br><strong>Displaying the 10 least expensive products</strong>.</p><br>';
     echo '<div class="table-container">';
     echo '<table>
     <thead>
@@ -123,18 +147,19 @@ else if($num > 0)
 
 $query = "SELECT p.name, p.price, p.description, s.num_sales 
          FROM products AS p, sales AS s 
-         WHERE s.product_id = p.id ORDER BY p.price DESC";
+         WHERE s.product_id = p.id ORDER BY p.price DESC
+         LIMIT 10";
 
 $res = @mysqli_query($dbc, $query);
 $num = mysqli_num_rows($res);
 if($num <= 0)
 {
-    echo "There are not notable sales!";
+    echo "There are no notable sales!";
 }
 else if($num > 0)
 {
     $counter = 5;
-    echo '<p><br><br>Displaying the most expensive products.</p><br>';
+    echo '<p><br><br><strong>Displaying the 10 most expensive products</strong>.</p><br>';
     echo '<div class="table-container">';
     echo '<table>
     <thead>

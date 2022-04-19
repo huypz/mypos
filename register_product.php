@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         value="<?php if (isset($_POST['category'])) echo $_POST['category']; ?>"></p>
     <p>Amount: <input type="number" name="amount" min="1" max="9999"
         value="<?php if (isset($_POST['amount'])) echo $_POST['amount']; ?>"></p>
-    <p>Price: <input type="number" name="price" min="0" max="999999999"
+    <p>Price: <input type="number" name="price" step="any" value="0.00" min="0" max="999999999"
         value="<?php if (isset($_POST['price'])) echo $_POST['price']; ?>"></p>
     <p>Description: <input type="text" name="description" size="30" maxlength="255"
         value="<?php if (isset($_POST['description'])) echo $_POST['description']; ?>"></p>
