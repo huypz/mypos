@@ -1,11 +1,12 @@
 <link rel="stylesheet" type="text/css" href="/css/table.css">
+<script src="/js/products.js"></script>
 <?php
 $page_title = 'MY POS - Products';
 include('includes/header.html');
 echo '<div class="page-header"><h1>Registered Products</h1></div>';
 require('../mysqli_connect.php');
 
-$q = "SELECT p.id, p.name, p.category, p.stock, p.description, s.supplier_id, u.username
+$q = "SELECT p.id, p.name, p.category, p.stock, p.price, p.description, s.supplier_id, u.username
       FROM products AS p, suppliers AS s, users AS u
       WHERE p.supplier_id=s.supplier_id AND s.user_id = u.user_id;";
 $r = @mysqli_query($dbc, $q);
@@ -20,6 +21,7 @@ if ($num > 0) {
             <th align="left">Category</th>
             <th align="left">Description</th>
             <th align="left">Stock</th>
+            <th align="left">Price</th>
             <th align="left">Supplier</th>
             <th align="left">Supplier ID</th>
         </tr>
@@ -31,15 +33,16 @@ if ($num > 0) {
             <td align="left">' . $row['category'] . '</td>
             <td align="left">' . $row['description'] . '</td>
             <td align="left">' . $row['stock'] . '</td>
+            <td align="left">$' . number_format($row['price'], 2) . '</td>
             <td align="left">' . $row['username'] . '</td>
             <td align="left">' . $row['supplier_id'] . '</td>
             <td align="left">
-                <a href="view_item.php?id='. $row['id'] .'">
+                <a id="edit-item" href="view_item.php?id='. $row['id'] .'" style="text-decoration: none; color: #657ef8;">
                 Edit
                 </a>
             </td>
-            <td align="left">
-                <a href="/add_item.php?id='. $row['id'] .'">
+            <td align="left" style="cursor: pointer; text-decoration: none; color: #657ef8;">
+                <a onClick="addItem(' . $row['id'] . ');">
                 Add
                 </a>
             </td>

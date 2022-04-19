@@ -26,6 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     else {
         $amt = mysqli_real_escape_string($dbc, trim($_POST['amount']));
     }
+    if (empty($_POST['price'])) {
+        $errors[] = 'Please enter the product price per unit.';
+    }
+    else {
+        $price = mysqli_real_escape_string($dbc, trim($_POST['price']));
+    }
     if (empty($_POST['description'])) {
         $errors[] = 'Please enter the product description.';
     }
@@ -50,8 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (empty($errors)) {
-        $q = "INSERT INTO products (name, category, stock, description, supplier_id)
-            VALUES ('$pn', '$cat', '$amt', '$desc', '$sid')";
+        $q = "INSERT INTO products (name, category, stock, description, supplier_id, price)
+            VALUES ('$pn', '$cat', '$amt', '$desc', '$sid', '$price')";
         $r = @mysqli_query($dbc, $q);
 
         if ($r) {
@@ -88,6 +94,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         value="<?php if (isset($_POST['category'])) echo $_POST['category']; ?>"></p>
     <p>Amount: <input type="number" name="amount" min="1" max="9999"
         value="<?php if (isset($_POST['amount'])) echo $_POST['amount']; ?>"></p>
+    <p>Price: <input type="number" name="price" min="0" max="999999999"
+        value="<?php if (isset($_POST['price'])) echo $_POST['price']; ?>"></p>
     <p>Description: <input type="text" name="description" size="30" maxlength="255"
         value="<?php if (isset($_POST['description'])) echo $_POST['description']; ?>"></p>
     <p><input type="submit" name="submit" value="Register"/></p>

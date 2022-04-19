@@ -57,10 +57,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             VALUES ('$un', '$fn', '$ln', '$e', SHA2('$p', 512), NOW())";
         $r1 = @mysqli_query($dbc, $q);
 
+        $q = "INSERT INTO shopping_carts (user_id) SELECT user_id FROM users WHERE username='$un'";
+        $r2 = @mysqli_query($dbc, $q);
+
         if ($_POST['supplier'] == "yes") {
             $q = "INSERT INTO suppliers
                 SET user_id = (SELECT user_id FROM users WHERE username='$un' OR email='$e')";
-            $r2 = @mysqli_query($dbc, $q);
+            $r3 = @mysqli_query($dbc, $q);
         }
 
         if ($r1) {

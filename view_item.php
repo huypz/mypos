@@ -1,7 +1,6 @@
 <link rel="stylesheet" type="text/css" href="/css/table.css">
 <?php
 require('../mysqli_connect.php');
-
 if(isset($_GET['id']))
 {
     $id = $_GET['id'];
@@ -9,7 +8,7 @@ if(isset($_GET['id']))
 
 $q = "SELECT p.id, p.name, p.category, p.stock, p.description, s.supplier_id, u.username
       FROM products AS p, suppliers AS s, users AS u
-      WHERE p.supplier_id=s.supplier_id AND s.user_id = u.user_id AND p.id=$id;";
+      WHERE p.supplier_id=s.supplier_id AND s.user_id = u.user_id AND p.id=$id";
 $r = @mysqli_query($dbc, $q);
 $num = mysqli_num_rows($r);
 $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
