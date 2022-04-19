@@ -9,6 +9,7 @@
     <script src="/js/jquery-3.6.0.min.js"></script>
     <script src="/js/login.js"></script>
     <script src="/js/autologin.js"></script>
+    <script src="/js/search.js"></script>
 </head>
 <body>
     <div class="header">
@@ -24,12 +25,12 @@
                 <a class="header-navitem" href="/view_products.php">PRODUCTS</a>
                 <a class="header-navitem" href="/notable_sales.php">SALES</a>
                 <div class="header-navitem header-search-bar">
-                    <form id="search" method="post">
+                    <form id="search" method="get">
                         <div class="input-container">
                             <button class="search-btn">
                                 <i class="search-icon gg-search" style="--ggs: 0.8"></i>
                             </button>
-                            <input type="text" placeholder="Search products or users">
+                            <input id="search-input" type="text" placeholder="Search products">
                         </div>
                     </form>
                 </div>

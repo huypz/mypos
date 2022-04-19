@@ -6,7 +6,7 @@ include('includes/header.html');
 <div class="page-header"><h1>Welcome</h1></div>
 <h3>Current Features</h3>
 <ul style="margin: 5px 0 0 48px;">
-    <li>Log In/Out (supports cookies)</li>
+    <li>Log In/Out</li>
     <li>Register Product</li>
     <li>View Users</li>
     <li>View Products</li>

@@ -49,7 +49,7 @@ $(function() {
             };
             options.url = '/login.php';
             $.ajax(options);
-        };
+        }
         return false;
     });
 });
