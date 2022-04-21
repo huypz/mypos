@@ -84,9 +84,19 @@ if ($num > 0) {
     echo '</tbody></table>';
 
     // create if user is admin check; below is edit button
+    $cnum = 0;
+    if (isset($_SESSION['user_id'])) {
+        $usid = $_SESSION['user_id'];
+        $query = "SELECT p.id FROM admins AS a, suppliers AS s, products AS p, users AS u WHERE s.user_id=$usid AND p.supplier_id=s.supplier_id AND p.id=$id";
+        $res = @mysqli_query($dbc, $query);
+        $cnum = mysqli_num_rows($res);
+    }
 
-    echo '<script type="text/javascript">';
-    echo '
+    if ($cnum <= 0) {
+        echo '<p style="float: right">Suppliers can edit their own products</p>';
+    } else if ($cnum >= 0) {
+        echo '<script type="text/javascript">';
+        echo '
     var oItem = {
         name: document.getElementById("name").textContent,
         category: document.getElementById("category").textContent,
@@ -96,12 +106,12 @@ if ($num > 0) {
         item_id: document.getElementById("prodId").textContent
     }
     ';
-    echo '</script>';
-    echo '<p id="editButton" style="float: right; margin: 5px 5px; cursor: pointer; color: #657ef8;" onclick="editClick(oItem)">Edit</p>';
+        echo '</script>';
+        echo '<p id="editButton" style="float: right; margin: 5px 5px; cursor: pointer; color: #657ef8;" onclick="editClick(oItem)">Edit</p>';
 
-    echo '<p id="cancelButton" style="float: right; display: none; margin: 5px 5px; cursor: pointer; color: #657ef8;" onclick="cancelClick(oItem)">Cancel</p>';
-    echo '<p id="saveButton" style="float: right; display: none; margin: 5px 5px; cursor: pointer; color: #657ef8;" onclick="saveClick(oItem)">Save</p>';
-
+        echo '<p id="cancelButton" style="float: right; display: none; margin: 5px 5px; cursor: pointer; color: #657ef8;" onclick="cancelClick(oItem)">Cancel</p>';
+        echo '<p id="saveButton" style="float: right; display: none; margin: 5px 5px; cursor: pointer; color: #657ef8;" onclick="saveClick(oItem)">Save</p>';
+    }
 
     mysqli_free_result($r);
 } else {
