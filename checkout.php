@@ -26,7 +26,8 @@ echo '<form name = "form" method="post">
                     <input id="CSV_Number" type="text" name="CSV_Number" placeholder="CSV_Number" maxlength="64">
                     <input id="Address" type="text" name="Address" placeholder="Address" maxlength="64">
                     <input id="Zip_Code" type="text" name="Zip_Code" placeholder="Zip Code" maxlength="64">
-                    <input id="City_State" type="text" name="City,State" placeholder="City,State" maxlength="64">
+                    <input id="City" type="text" name="City" placeholder="City" maxlength="64">
+                    <input id="State" type="text" name="State" placeholder="State" maxlength="64">
                     <input type = "Submit" value = "Finish Check Out!">
                 </div>
             </div>
@@ -63,12 +64,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     {
         $Zip_Code = mysqli_real_escape_string($dbc, trim($_POST['Zip_Code']));
     }
-    if (empty($_POST['City,State'])) {
-        $errors[] = 'Please Enter a City,State!';
+    if (empty($_POST['City'])) {
+        $errors[] = 'Please Enter a City!';
     }
     else
     {
-        $City_State = mysqli_real_escape_string($dbc, trim($_POST['City,State']));
+        $City = mysqli_real_escape_string($dbc, trim($_POST['City']));
+    }
+    if (empty($_POST['State'])) {
+        $errors[] = 'Please Enter a State!';
+    }
+    else
+    {
+        $City_State = mysqli_real_escape_string($dbc, trim($_POST['State']));
     }
 
     if (empty($errors)) {
@@ -101,6 +109,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $query = "DELETE FROM items WHERE cart_id = $cart_id";
         $r = @mysqli_query($dbc, $query);
         $total = 0;
+        echo '<script language="javascript">';
+        echo 'alert("Purchase successful")';
+        echo '</script>';
     }
     else {
         echo '<h1>Error!</h1>

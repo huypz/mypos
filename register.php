@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $q = "INSERT INTO shopping_carts (user_id) SELECT user_id FROM users WHERE username='$un'";
         $r2 = @mysqli_query($dbc, $q);
 
-        if ($_POST['supplier'] == "yes") {
+        if (isset($_POST['supplier'])) {
             $q = "INSERT INTO suppliers
                 SET user_id = (SELECT user_id FROM users WHERE username='$un' OR email='$e')";
             $r3 = @mysqli_query($dbc, $q);
