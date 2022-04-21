@@ -87,7 +87,7 @@ if ($num > 0) {
     $cnum = 0;
     if (isset($_SESSION['user_id'])) {
         $usid = $_SESSION['user_id'];
-        $query = "SELECT p.id FROM admins AS a, suppliers AS s, products AS p, users AS u WHERE s.user_id=$usid AND p.supplier_id=s.supplier_id AND p.id=$id";
+        $query = "SELECT p.id FROM admins AS a, suppliers AS s, products AS p, users AS u WHERE a.user_id=$usid OR (s.user_id=$usid AND p.supplier_id=s.supplier_id AND p.id=$id)";
         $res = @mysqli_query($dbc, $query);
         $cnum = mysqli_num_rows($res);
     }
