@@ -21,7 +21,7 @@ if ($num > 0) {
         <tr>
             <th align="left">Name</th>
             <th align="left">Category</th>
-            <th align="left">Description</th>
+            <th align="left" colspan="2">Description</th>
             <th align="left">Stock</th>
             <th align="left">Price</th>
             <th align="left">Supplier</th>
@@ -33,7 +33,7 @@ if ($num > 0) {
         echo '<tr>
             <td align="left">' . $row['name'] . '</td>
             <td align="left">' . $row['category'] . '</td>
-            <td align="left">' . $row['description'] . '</td>
+            <td align="left" colspan="2">' . $row['description'] . '</td>
             <td align="left">' . $row['stock'] . '</td>
             <td align="left">$' . number_format($row['price'], 2) . '</td>
             <td align="left">' . $row['username'] . '</td>
