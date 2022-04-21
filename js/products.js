@@ -18,33 +18,41 @@ function addItem(item_id, quantity=1, in_cart=1, reload=false) {
     var data = new Object();
     data.item_id = item_id;
     data.quantity = quantity;
+    data.in_cart = in_cart;
 
     var options = new Object();
     options.data = data;
     options.dataType = 'text';
     options.type = 'POST';
     options.success = function(response) {
-        if (reload) {
-            location.reload();
-        }
         updateCartTotal();
         if (response == 'OUT OF STOCK') {
+            var t = document.getElementById(`item-${item_id}-amt`);
+            t.classList.add("error");
             alert('Item out of stock');
+            location.reload();
+            return false;
         }
         else if (response == 'CORRECT') {
-            
+            var t = document.getElementById(`item-${item_id}-amt`);
+            t.classList.remove("error");
         } 
         else if (response == 'INCORRECT') {
             alert('Invalid user id');
+            return false;
         } 
         else if (response == 'INCOMPLETE') {
             alert('Invalid item id or quantity');
+            return false;
         } 
+        if (reload) {
+            location.reload();
+        }
     };
     options.url = '/add_item.php';
     $.ajax(options);
 
-    return true;
+    return false;
 }
 
 function mButton(item_id, reload=false) {
@@ -62,8 +70,8 @@ function mButton(item_id, reload=false) {
 function pButton(item_id, reload=false) {
     var amt = document.getElementById(`item-${item_id}-amt`);
     var amt_val = parseInt(amt.textContent);
-    amt.textContent = ++amt_val;
-    addItem(item_id, 1, amt_val, reload);
+    ++amt_val;
+    addItem(item_id, 1, amt_val, reload)
     return true;
 }
 

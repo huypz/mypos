@@ -141,3 +141,7 @@ tr:nth-child(odd) {
 .p-btn:hover {
     background-color: #a57c55;
 }
+
+.error {
+    color: #ff0000;
+}

@@ -1,5 +1,6 @@
 <?php
 session_start();
+$page_title = "Checkout";
 include('includes/header.html');
 require('../mysqli_connect.php');
 
@@ -23,7 +24,7 @@ echo '<form name = "form" method="post">
                 <div class="input-container">
                     <input id="Card_Number" type="text" name="Card_Number" placeholder="Card Number" maxlength="64">
                     <input id="CSV_Number" type="text" name="CSV_Number" placeholder="CSV_Number" maxlength="64">
-                    <input id="Adress" type="text" name="Adress" placeholder="Adress" maxlength="64">
+                    <input id="Address" type="text" name="Address" placeholder="Address" maxlength="64">
                     <input id="Zip_Code" type="text" name="Zip_Code" placeholder="Zip Code" maxlength="64">
                     <input id="City_State" type="text" name="City,State" placeholder="City,State" maxlength="64">
                     <input type = "Submit" value = "Finish Check Out!">
@@ -48,12 +49,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     {
         $CSV_Number = mysqli_real_escape_string($dbc, trim($_POST['CSV_Number']));
     }
-    if (empty($_POST['Adress'])) {
-        $errors[] = 'Please Enter a Adress!';
+    if (empty($_POST['Address'])) {
+        $errors[] = 'Please Enter a Address!';
     }
     else
     {
-        $Adress = mysqli_real_escape_string($dbc, trim($_POST['Adress']));
+        $Address = mysqli_real_escape_string($dbc, trim($_POST['Address']));
     }
     if (empty($_POST['Zip_Code'])) {
         $errors[] = 'Please Enter a Zip_Code!';
@@ -71,16 +72,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (empty($errors)) {
-        $q = "SELECT p.id, p.stock
+        $q = "SELECT p.id, p.stock, i.quantity
         FROM shopping_carts AS s, items AS i, products AS p
-        WHERE s.user_id=$id AND i.cart_id=s.cart_id AND p.id=i.product_id;";
+        WHERE s.user_id=$id AND i.cart_id=s.cart_id AND p.id=i.product_id";
 
         $res = @mysqli_query($dbc, $q);
 
         while($row = mysqli_fetch_array($res, MYSQLI_ASSOC))
         {
             $CurrentStock = $row['stock'];
-            $CurrentStock -= 1;
+            $CurrentStock -= $row['quantity'];
             $pId = $row['id'];
             $q = "UPDATE products " . "SET stock = '$CurrentStock' " . "WHERE id = '$pId'";
             $r = @mysqli_query($dbc, $q);

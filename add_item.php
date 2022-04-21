@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $q = "SELECT stock FROM products WHERE id={$_POST['item_id']}";
         $r = @mysqli_query($dbc, $q);
         $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
-        if ($row['stock'] == 0) {
+        if ($row['stock'] <= 0 || $row['stock'] < $_POST['in_cart']) {
             echo 'OUT OF STOCK';
             mysqli_close($dbc);    
             exit(); 
