@@ -19,16 +19,20 @@ require('../mysqli_connect.php');
 
 if (isset($_SESSION['user_id'])) {
     echo '<div class="notifications page-header"><h2>These are your notifications!</h2></div>';
+    $num1 = 0;
     $id = $_SESSION['user_id'];
     $query = "SELECT s.supplier_id FROM suppliers AS s WHERE s.user_id = '$id'";
     $res1 = @mysqli_query($dbc, $query);
-    $num1 = mysqli_num_rows($res1);
+    $num5 = mysqli_num_rows($res1);
     $row1 = mysqli_fetch_array($res1, MYSQLI_ASSOC);
-    $suppId = $row1['supplier_id'];
 
-    $query1 = "SELECT name, product_id FROM ibt_email_queue WHERE supplier_id = '$suppId'";
-    $res2 = @mysqli_query($dbc, $query1);
-    $num1 = mysqli_num_rows($res2);
+    if($num5 > 0)
+    {
+        $suppId = $row1['supplier_id'];
+        $query1 = "SELECT name, product_id FROM ibt_email_queue WHERE supplier_id = '$suppId'";
+        $res2 = @mysqli_query($dbc, $query1);
+        $num1 = mysqli_num_rows($res2);
+    }
 
     if($num1 >= 1)
     {
@@ -65,9 +69,13 @@ if (isset($_SESSION['user_id'])) {
         echo '</tbody></table></div>';
     }
 
-    $query1 = "SELECT name, product_id FROM iat_email_queue WHERE supplier_id = '$suppId'";
-    $res = @mysqli_query($dbc, $query1);
-    $num2 = mysqli_num_rows($res);
+    $num2 = 0;
+    if($num5 > 0)
+    {
+        $query1 = "SELECT name, product_id FROM iat_email_queue WHERE supplier_id = '$suppId'";
+        $res = @mysqli_query($dbc, $query1);
+        $num2 = mysqli_num_rows($res);
+    }
 
 
     if($num2 > 0)
