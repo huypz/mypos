@@ -5,7 +5,7 @@ include('includes/header.html');
 echo '<div class="page-header"><h1>Registered Users</h1></div>';
 require('../mysqli_connect.php');
 
-$q = "SELECT CONCAT(last_name, ', ', first_name) AS name,
+$q = "SELECT user_id, CONCAT(last_name, ', ', first_name) AS name,
     email,
     DATE_FORMAT(registration_date, '%M %d %Y') AS dr
     FROM users
@@ -18,6 +18,7 @@ if ($num > 0) {
     echo '<table>
         <thead>
         <tr>
+            <th align="left">ID</th>
             <th align="left">Name</th>
             <th align="left">Email</th>
             <th align="left">Date Registered</th>
@@ -26,6 +27,7 @@ if ($num > 0) {
         <tbody>';
     while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
         echo '<tr>
+            <td align="left">' . $row['user_id'] . '</td>
             <td align="left">' . $row['name'] . '</td>
             <td align="left">' . $row['email'] . '</td>
             <td align="left">' . $row['dr'] . '</td>
