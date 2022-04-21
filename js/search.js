@@ -5,6 +5,7 @@ $(function() {
             input = $('#search-input').val();
         } 
         if (input) {
+            
             var data = new Object();
             data.input = input;
     

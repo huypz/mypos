@@ -239,3 +239,28 @@ body {
     justify-content: center;
     cursor: pointer;
 }
+
+.autocomplete-container {
+    position: absolute;
+    z-index: 10;
+    top: 69px;
+    width: 420px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.8);
+    text-align: left;
+}
+
+.autocomplete-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.autocomplete-item {
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 10px 20px;
+    margin: 4px 0;
+    font-weight: bold;
+}
