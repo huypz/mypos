@@ -10,6 +10,7 @@
     <script src="/js/login.js"></script>
     <script src="/js/autologin.js"></script>
     <script src="/js/search.js"></script>
+    <script src="/js/products.js"></script>
 </head>
 <body>
     <div class="header">
@@ -23,7 +24,7 @@
                 <a class="header-navitem" href="/index.php">HOME</a>
                 <a class="header-navitem" href="/view_users.php">USERS</a>
                 <a class="header-navitem" href="/view_products.php">PRODUCTS</a>
-                <a class="header-navitem" href="/notable_sales.php">SALES</a>
+                <a class="header-navitem" href="/notable_sales.php">REPORTS</a>
                 <div class="header-navitem header-search-bar">
                     <form id="search" method="get">
                         <div class="input-container">
@@ -68,6 +69,7 @@
                 <button class="cart-btn">
                     <i class="cart-icon gg-shopping-cart"></i>
                 </button>
+                <span id="cart-total" style="font-size: 11px; font-weight: bold; position: absolute; left: 65%; bottom: 56%;"></span>
             </form>
         </div>
     </div>

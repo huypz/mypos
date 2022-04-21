@@ -16,10 +16,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $q = "SELECT cart_id FROM shopping_carts WHERE user_id={$_SESSION['user_id']}";
             $r = @mysqli_query($dbc, $q);
             $row = mysqli_fetch_array($r, MYSQLI_ASSOC);
-            $cart_id = $row['cart_id'];
-            $q = "INSERT INTO items (cart_id, product_id, quantity) 
-                VALUES ($cart_id, {$_POST['item_id']}, {$_POST['quantity']})";
-            $r = @mysqli_query($dbc, $q);
+            $cart_id = $row['cart_id'];   
+            if ($_POST['quantity'] == 1) {
+                $q = "INSERT INTO items (cart_id, product_id, quantity) 
+                VALUES ($cart_id, {$_POST['item_id']}, {$_POST['quantity']})
+                ON DUPLICATE KEY UPDATE quantity=(quantity+1)";
+                $r = @mysqli_query($dbc, $q);
+            }
+            else if ($_POST['quantity'] == -1) {
+                $q = "UPDATE items SET quantity = (quantity-1) 
+                    WHERE cart_id=$cart_id AND product_id={$_POST['item_id']}";
+                $r = @mysqli_query($dbc, $q);
+                $q = "DELETE FROM items WHERE quantity=0 AND cart_id=$cart_id";
+                $r = @mysqli_query($dbc, $q);
+            }
             echo 'CORRECT';
             mysqli_close($dbc);    
             exit(); 

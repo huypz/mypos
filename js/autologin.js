@@ -17,5 +17,8 @@ $(function() {
     };
     options.url = '/autologin.php';
     $.ajax(options);
+
+    updateCartTotal();
+
     return false;
 });

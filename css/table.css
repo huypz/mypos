@@ -1,3 +1,6 @@
+@import url('https://css.gg/math-plus.css');
+@import url('https://css.gg/math-minus.css');
+
 html, body {
     margin: 0 !important;
     height: 100% !important;
@@ -12,5 +15,129 @@ html, body {
 
 table {
     width: 100%;
-    border-spacing: 15px 1rem; border: 1px solid #ebebeb;
+    border-spacing: 15px 1rem; 
+    border: 1px solid #ebebeb;
+    border-collapse: collapse;
+}
+
+th {
+    background: #fff;
+}
+
+th, td {
+    padding: 20px;
+}
+
+tr:nth-child(odd) {
+    background: #ebebeb;
+}
+
+.edit-item-container {
+    width: 69px;
+    max-height: 31.25px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #ca996a;
+    padding: 6px 24px;
+    border-radius: 15px;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+    margin-left: 69px;
+}
+
+
+.edit-item-container a {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.edit-item-container:hover {
+    color: #fff;
+    background-color: #e7b07d;
+}
+
+.edit-item-container span {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+.add-item-container {
+    width: 69px;
+    max-height: 31.25px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #ca996a;
+    padding: 6px 24px;
+    border-radius: 15px;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+}
+
+.add-item-container2 {
+    max-height: 31.25px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #ca996a;
+    padding: 6px 28px;
+    border-radius: 15px;
+    cursor: auto;
+    display: inline-flex;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+}
+
+.add-item-container:hover {
+    color: #fff;
+    background-color: #e7b07d;
+}
+
+.m-btn {
+    width: 24px;
+    height: 24px;
+    background-color: #ca996a;
+    position: relative;
+    margin: 7px 0px;
+    left: -15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.m-btn:hover {
+    background-color: #a57c55;
+}
+
+.p-btn {
+    width: 24px;
+    height: 24px;
+    background-color: #ca996a;
+    position: relative;
+    margin: 7px 0px;
+    right: -15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.p-btn:hover {
+    background-color: #a57c55;
 }
