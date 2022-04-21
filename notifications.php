@@ -1,4 +1,12 @@
 <style>
+body {
+    overflow: hidden !important;
+}
+
+.body {
+    overflow: scroll !important;
+}
+
 .table-container {
     height: auto;
     max-height: 60%;
