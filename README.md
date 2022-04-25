@@ -6,6 +6,9 @@ We created this web application that allows suppliers to sell products to users 
 ## How we built it
 We built it using MySQL, PHP, and JQuery. The frontend was built with HTML/CSS and Javascript.
 
+## SQL Dump
+Found in /sql/mypos.sql
+
 ## Triggers
 - Trigger for when a product stock reaches a certain threshold
 
