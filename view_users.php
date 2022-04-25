@@ -38,15 +38,21 @@ if($num > 0)
                 <th align="left">Name</th>
                 <th align="left">Email</th>
                 <th align="left">Date Registered</th>
+                <th align="left">Is Supplier</th>
             </tr>
             </thead>
             <tbody>';
         while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
+            $q2 = "SELECT supplier_id FROM suppliers WHERE user_id={$row['user_id']}";
+            $r2 = @mysqli_query($dbc, $q2);
+            $num2 = mysqli_num_rows($r2);
+            $is_supplier = $num2 > 0 ? "Yes" : "No";
             echo '<tr>
                 <td align="left">' . $row['user_id'] . '</td>
                 <td align="left">' . $row['name'] . '</td>
                 <td align="left">' . $row['email'] . '</td>
                 <td align="left">' . $row['dr'] . '</td>
+                <td align="left">' . $is_supplier . '</td>
                 </tr>';
         }
         echo '</tbody></table></div>';
