@@ -25,7 +25,7 @@ if (isset($_SESSION['user_id'])) {
     $row = mysqli_fetch_array($res, MYSQLI_ASSOC);
     if($num <= 0)
     {
-        echo '<div class="Not A supplier"><p2>You are not a supplier!</p2></div>';
+        echo '<div class="page-header"><h2>You are not a supplier!</h2></div>';
     }
     else if($num >= 0)
     {
