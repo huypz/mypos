@@ -12,5 +12,10 @@ Found in /sql/mypos.sql
 ## Triggers
 - Trigger for when a product stock reaches a certain threshold
 
-https://exsale.tech/
+## Links
+Website: \
+https://exsale.tech/ \
 http://ec2-18-117-14-33.us-east-2.compute.amazonaws.com/
+
+Database: \
+https://www.exsale.tech/phpMyAdmin
