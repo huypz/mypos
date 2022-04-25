@@ -45,7 +45,12 @@ $(function() {
             options.dataType = 'text';
             options.type = 'get';
             options.success = function(response) {
-                location.reload();
+                if (response == 'INCORRECT') {
+                    alert('Invalid credentials');
+                }
+                else {
+                    location.reload();
+                }
             };
             options.url = '/login.php';
             $.ajax(options);
