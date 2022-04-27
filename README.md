@@ -11,6 +11,9 @@ Found in /sql/mypos.sql
 
 ## Triggers
 - Trigger for when a product stock reaches a certain threshold
+- Trigger for when a product stock falls below a certain threshold
+- Trigger to notify a user when they complete a transaction
+- Trigger to update stock when a user checks out (triggers on stock quantity change)
 
 ## Links
 Website: \
